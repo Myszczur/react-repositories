@@ -4,22 +4,22 @@
  * Module dependencies.
  */
 
-const app = require('../app');
+import app, { set } from '../app';
 const debug = require('debug')('server:server');
-const http = require('http');
+import { createServer } from 'http';
 
 /**
  * Get port from environment and store in Express.
  */
 
 const port = normalizePort(process.env.PORT || '5000');
-app.set('port', port);
+set('port', port);
 
 /**
  * Create HTTP server.
  */
 
-const server = http.createServer(app);
+const server = createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -67,11 +67,9 @@ function onError(error) {
     case 'EACCES':
       console.error(bind + ' requires elevated privileges');
       process.exit(1);
-      break;
     case 'EADDRINUSE':
       console.error(bind + ' is already in use');
       process.exit(1);
-      break;
     default:
       throw error;
   }
