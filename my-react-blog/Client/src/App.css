@@ -32,7 +32,105 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.pagination-active {
+  background-color: blue;
+  cursor: pointer;
+  color: white;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+}
+
+.pagination-item {
+  cursor: pointer;
+  border: 1px solid #ddd;
+  padding: 10px 15px;
+}
+
+.pagination-item:hover {
+  background-color: #ddd;
+}
+
+.CommentStyles {
+  opacity: 1;
+}
+
+.FadeInComment {
+  animation-name: fadeIn;
+  animation-timing-function: ease;
+  animation-duration: 2s;
+}
+
+.FadeOutComment {
+  animation-name: fadeOut;
+  animation-timing-function: linear;
+  animation-duration: 2s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+}
+
+.notification-num-showpost {
+  position: relative;
+  padding: 5px 9px;
+  background-color: red;
+  color: #941e1e;
+  bottom: 23px;
+  right: 5px;
+  z-index: -1;
+  border-radius: 50%;
+}
+
+.FlexProfileDrawer {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  margin-left: -90px;
+  margin-right: 25px;
+}
+
+.FlexColumnProfile>h1 {
+  text-align: center;
+}
+
+.FlexProfileDrawerRow {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.FlexColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.FlexRow {
+  display: flex;
+  flex-direction: row;
 }
