@@ -19,6 +19,6 @@ public class Employee {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
-    @Column(name = "email_Id")
+    @Column(name = "email_Id", unique = true)
     private String emailId;
 }
