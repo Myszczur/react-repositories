@@ -6,6 +6,7 @@ import pl.urbanik.employeemanagement.systembackend.model.Employee;
 import pl.urbanik.employeemanagement.systembackend.service.EmployeeService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
@@ -21,7 +22,12 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public  Employee addNewEmployee(@RequestBody Employee employee) {
+    public Employee addNewEmployee(@RequestBody Employee employee) {
         return employeeService.addNewEmployee(employee);
+    }
+
+    @GetMapping
+    public Optional<Employee> getEmployee(@PathVariable long id) {
+        return employeeService.getEmployee(id);
     }
 }
