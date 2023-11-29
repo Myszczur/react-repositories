@@ -6,6 +6,7 @@ import pl.urbanik.employeemanagement.systembackend.model.Employee;
 import pl.urbanik.employeemanagement.systembackend.repository.EmployeeRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EmployeeService {
@@ -19,5 +20,9 @@ public class EmployeeService {
 
     public Employee addNewEmployee(Employee employee) {
         return employeeRepository.save(employee);
+    }
+
+    public Optional<Employee> getEmployee(long id) {
+        return employeeRepository.findById(id);
     }
 }
