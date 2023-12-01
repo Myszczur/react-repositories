@@ -1,12 +1,14 @@
 package pl.urbanik.employeemanagement.systembackend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.urbanik.employeemanagement.systembackend.model.Employee;
 import pl.urbanik.employeemanagement.systembackend.service.EmployeeService;
 
 import java.util.List;
+
 
 @RestController
 @CrossOrigin("*")
@@ -36,5 +38,11 @@ public class EmployeeController {
     public ResponseEntity<Employee> updateEmployee(@PathVariable long id, @RequestBody Employee employee) {
         Employee updatedEmployee = employeeService.updateEmployee(id, employee);
         return ResponseEntity.ok(updatedEmployee);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Employee> removeEmployee(@PathVariable long id) {
+        employeeService.removeEmployee(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
