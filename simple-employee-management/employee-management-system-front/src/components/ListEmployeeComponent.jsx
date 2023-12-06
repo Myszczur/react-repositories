@@ -7,19 +7,35 @@ function ListEmployeeComponent() {
     const [employees, setEmployees] = useState([]);
 
     useEffect(() => {
+        getAllEmployees();
+    }, []);
+
+    const deleteEmployee = (id) => {
+        EmployeeService.deleteEmployee(id)
+            .then((response) => {
+                getAllEmployees();
+            })
+            .catch((error) => {
+                console.log('================ERROR====================');
+                console.log(error);
+                console.log('================ERROR====================');
+            });
+    };
+
+    const getAllEmployees = () => {
         EmployeeService.getAllEmployees()
             .then((response) => {
                 setEmployees(response.data);
-                console.log('====================================');
+                console.log('=================RESPONSE===================');
                 console.log(response.data);
-                console.log('====================================');
+                console.log('=================RESPONSE===================');
             })
             .catch((error) => {
-                console.log('====================================');
+                console.log('================ERROR====================');
                 console.log(error);
-                console.log('====================================');
+                console.log('================ERROR====================');
             });
-    }, []);
+    }
 
     return (
         <div className="container">
@@ -31,6 +47,7 @@ function ListEmployeeComponent() {
                     <th> First Name </th>
                     <th> Last Name </th>
                     <th> Email Id </th>
+                    <th> Action </th>
                 </thead>
                 <tbody>
                     {employees.map(
@@ -40,6 +57,12 @@ function ListEmployeeComponent() {
                                 <td> {employee.firstName} </td>
                                 <td>{employee.lastName}</td>
                                 <td>{employee.emailId}</td>
+                                <td>
+                                    <Link className='btn btn-info' to={`/edit-employee/${employee.id}`}>Edit</Link>
+                                    {/* <Link className='btn btn-danger' to={`/delete-employee/${employee.id}`}>Delete</Link> */}
+                                    <button className='btn btn-danger' onClick={() => deleteEmployee(employee.id)}
+                                        style={{ marginLeft: '10px' }} >Delete</button>
+                                </td>
                             </tr>
                     )}
                 </tbody>
