@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import EmployeeService from '../services/EmployeeService';
-import { Link } from 'react-router-dom';
-// import { useHistory } from 'react-router-dom';
+import { Link, useParams, useNavigate  } from 'react-router-dom';
 
 function AddEmployeeComponent() {
     const initialSate = '';
@@ -10,33 +9,69 @@ function AddEmployeeComponent() {
     const [lastName, setLastName] = useState(initialSate);
     const [emailId, setEmailId] = useState(initialSate);
 
-    // const history = useHistory();
+    const navigate = useNavigate();
 
-    const saveEmployee = (e) => {
+    const { id } = useParams();
+
+    const saveOrUpdateEmployee = (e) => {
         e.preventDefault();
         const employee = { firstName, lastName, emailId };
 
-        EmployeeService.createEmployee(employee)
+        if (id) {
+            EmployeeService.updateEmployee(id, employee)
+                .then((response) => {
+                    navigate('/employees')
+                })
+                .catch((error) => {
+                    console.log('================ERROR====================');
+                    console.log(error);
+                    console.log('================ERROR====================');
+                });
+        } else {
+            EmployeeService.createEmployee(employee)
+                .then((response) => {
+                    console.log('=================RESPONSE===================');
+                    console.log(response.data);
+                    console.log('=================RESPONSE===================');
+
+                    navigate('/employees');
+                })
+                .catch((error) => {
+                    console.log('================ERROR====================');
+                    console.log(error);
+                    console.log('================ERROR====================');
+                });
+        }
+    };
+
+    useEffect(() => {
+        EmployeeService.getEmployeeById(id)
             .then((response) => {
-                console.log('====================================');
-                console.log(response.data);
-                // history.push('/employees');
-                console.log('====================================');
+                setFirstName(response.data.firstName)
+                setLastName(response.data.lastName);
+                setEmailId(response.data.emailId);
             })
             .catch((error) => {
-                console.log('====================================');
+                console.log('================ERROR====================');
                 console.log(error);
-                console.log('====================================');
-            });
+                console.log('================ERROR====================');
+            })
+    }, []);
+
+    const title = () => {
+        if (id) {
+            return <h2 className='text-center'>Update Employee</h2>
+        } else {
+            return <h2 className='text-center'>Add New Employee</h2>
+        }
     };
 
     return (
         <>
-            <h1>Add New Employee</h1>
             <br /><br />
             <div className='container'>
                 <div className='card col-md-6 offset-md-3 offset-md-3'>
-                    <h2 className='text-center'>Add Employee</h2>
+                    {title()}
                     <div className='card-body'>
                         <form>
                             <div className='form-group mb-2'>
@@ -51,7 +86,7 @@ function AddEmployeeComponent() {
                                 <label className='form-label'>Email Adress:</label>
                                 <input type='text' placeholder='Enter Email' name='emailId' className='form-control' value={emailId} onChange={(e) => setEmailId(e.target.value)} />
                             </div>
-                            <button className='btn btn-success' onClick={(e) => saveEmployee(e)}>Submit</button>
+                            <button className='btn btn-success' onClick={(e) => saveOrUpdateEmployee(e)}>Submit</button>
                             <Link to='/employees' className='btn btn-danger'>Cancel</Link>
                         </form>
                     </div>
