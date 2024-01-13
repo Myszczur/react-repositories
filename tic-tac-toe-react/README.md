@@ -1,6 +1,6 @@
 # Tic Tac Toe Game
 
-![Game Screenshot](https://vscode.dev/github/Myszczur/react-repositories/blob/my-react-blog/tic-tac-toe-react/src/components/assets/Zrzut%20ekranu%20(65).png)
+![Game Screenshot](<src/components/assets/Zrzut ekranu (65).png>)
 
 ## Description
 
@@ -66,5 +66,5 @@ tic-tac-toe/
 
 ## Screenshots
 
-![Gameplay](https://vscode.dev/github/Myszczur/react-repositories/blob/my-react-blog/tic-tac-toe-react/src/components/assets/Zrzut%20ekranu%20(66).png)
-![Winner](https://vscode.dev/github/Myszczur/react-repositories/blob/my-react-blog/tic-tac-toe-react/src/components/assets/Zrzut%20ekranu%20(64).png)
+![Gameplay](<src/components/assets/Zrzut ekranu (66).png>)
+![Winner](<src/components/assets/Zrzut ekranu (64).png>)
