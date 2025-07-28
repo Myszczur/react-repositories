@@ -1,0 +1,63 @@
+.container {
+    text-align: center;
+  }
+  
+  .title {
+    margin-top: 60px;
+    color: #00e3ff; /* Jasny niebieski kolor, przypominający kolor nieba w kosmosie */
+    font-size: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .reset {
+    width: 250px;
+    height: 100px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 50px;
+    background: #1a1a1d; /* Ciemny kolor tła */
+    font-size: 1.3rem;
+    color: #00e3ff;
+    margin-top: 25px;
+    margin-bottom: 50px;
+    transition: background 0.3s ease;
+  }
+  
+  .reset:hover {
+    background: #313138; /* Delikatne przyciemnienie tła podczas najechania myszką */
+  }
+  
+  .boxes {
+    display: flex;
+    height: 180px;
+    width: 180px;
+    background: #1a1a1d;
+    border: 4px solid #29292e; /* Delikatne wyodrębnienie granic pola */
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .boxes:hover {
+    transform: scale(1.05);
+  }
+  
+  .board {
+    height: 600px;
+    width: 564px;
+    display: flex;
+    margin: auto;
+  }
+  
+  .boxes img {
+    margin: 20px;
+  }
+  
+  .title img {
+    padding: 20px;
+    height: 50px;
+  }
+  
